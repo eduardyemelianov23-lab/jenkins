@@ -26,7 +26,7 @@ stages {
         }
         steps {
             echo "Running tests..."
-            sh './gradlew clean test'
+            bat './gradlew clean test'
         }
     }
 
