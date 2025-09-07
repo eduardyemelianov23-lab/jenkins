@@ -2,8 +2,10 @@ pipeline {
 agent any
 
 parameters {
-    string{name: 'BRANCH', defaultValue: 'main', decription: 'Checkout branch'}
+    string(name: 'BRANCH', defaultValue: 'main', description: 'Checkout branch')
+    booleanParam(name: 'RUN_TESTS', defaultValue: 'true', description: 'Czy uruchomić testy?')
 }
+
 stages {
     stage('Start') {
         steps {
@@ -19,9 +21,12 @@ stages {
     }
 
     stage('Test') {
+        when {
+            expression { return params.RUN_TESTS == true }
+        }
         steps {
             echo "Running tests..."
-            bat '.\\gradlew clean test'
+            sh './gradlew clean test'
         }
     }
 
