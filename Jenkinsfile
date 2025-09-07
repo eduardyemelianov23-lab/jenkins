@@ -1,7 +1,7 @@
 pipeline {
 agent any
 
-parametres {
+parameters {
     string{name: 'BRANCH', defaultValue: 'main', decription: 'Checkout branch'}
 }
 stages {
